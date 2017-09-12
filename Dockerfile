@@ -20,9 +20,3 @@ ARG APT_VERSION
 
 RUN cd /singularity \
  && fakeroot dpkg-buildpackage -b -us -uc  
-
-FROM nvidia/cuda:8.0-devel
-ARG VERSION
-ARG APT_VERSION
-COPY --from=0 /singularity-container_2.3-1_amd64.deb /tmp/singularity-container_${VERSION}-${APT_VERSION}_amd64.deb
-RUN dpkg -i /tmp/singularity-container_${VERSION}-${APT_VERSION}_amd64.deb
